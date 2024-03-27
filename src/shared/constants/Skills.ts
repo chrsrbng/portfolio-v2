@@ -86,5 +86,9 @@ export const SKILLS = {
       label: "TypeScript",
     },
     { iconPath: "/icons/skill-icons--postman.svg", label: "Postman" },
+    {
+      iconPath: "/icons/skill-icons--vercel-dark.svg",
+      label: "Vercel",
+    },
   ],
 };
