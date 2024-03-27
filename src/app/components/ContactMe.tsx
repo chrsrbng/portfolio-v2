@@ -1,6 +1,7 @@
 import { fadeIn } from "@/shared/helpers/variants";
 import { motion } from "framer-motion";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
+import { twJoin } from "tailwind-merge";
 
 interface CustomElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -13,8 +14,17 @@ interface CustomForm extends HTMLFormElement {
 }
 
 export default function ContactMe() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMessageShown, setIsMessageShown] = useState(false);
+
+  const showSuccessMessage = () => {
+    setTimeout(() => setIsMessageShown(false), 3000);
+  };
+
   const handleSubmit = async (event: FormEvent<CustomForm>) => {
     event.preventDefault();
+
+    setIsLoading(true);
     const target = event.currentTarget.elements;
 
     const result = await fetch("/api/email", {
@@ -29,7 +39,13 @@ export default function ContactMe() {
       }),
     });
 
-    console.log(await result.json());
+    const { error } = await result.json();
+
+    if (!error) {
+      setIsLoading(false);
+      setIsMessageShown(true);
+      showSuccessMessage();
+    }
   };
 
   return (
@@ -155,19 +171,26 @@ export default function ContactMe() {
                 tw-bg-slate-100/90 tw-resize-none"
               />
             </motion.div>
-            <motion.button
-              variants={fadeIn("left", 1.7)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.7 }}
-              type="submit"
-              className="tw-block dark:tw-bg-slate-900/90 tw-border tw-border-sky-400 focus:tw-border-sky-600 hover:tw-border-sky-600 tw-border-solid 
-                tw-text-sm tw-rounded-lg tw-py-2.5 tw-px-2 focus:tw-shadow-[0_0_0_2px]
-                focus:tw-shadow-sky-400/90 focus-within:tw-border-none focus:tw-outline-none placeholder:tw-text-slate-400/60
-                tw-bg-slate-100/90 tw-w-32 tw-text-sky-400"
-            >
-              Send
-            </motion.button>
+            <div className="tw-flex tw-flex-wrap tw-items-center tw-gap-3">
+              <motion.button
+                variants={fadeIn("left", 1.7)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.7 }}
+                type="submit"
+                className={twJoin(
+                  "tw-block dark:tw-bg-slate-900/90 tw-border tw-border-sky-400 focus:tw-border-sky-600 hover:tw-border-sky-600 tw-border-solid tw-text-sm tw-rounded-lg tw-py-2.5 tw-px-2 focus:tw-shadow-[0_0_0_2px] focus:tw-shadow-sky-400/90 focus-within:tw-border-none focus:tw-outline-none placeholder:tw-text-slate-400/60 tw-bg-slate-100/90 tw-w-32 tw-text-sky-400",
+                  isLoading &&
+                    "tw-cursor-not-allowed tw-text-sky-400/50 tw-border-none",
+                )}
+                disabled={isLoading}
+              >
+                Send
+              </motion.button>
+              {isMessageShown && (
+                <p className="tw-text-teal-400">Email Sent!</p>
+              )}
+            </div>
           </form>
         </motion.div>
       </div>
