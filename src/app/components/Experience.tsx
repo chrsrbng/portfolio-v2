@@ -1,6 +1,4 @@
-import { EXPERIENCE_CONSTANTS } from "@/shared/constants/experienceConstants";
-import { faTimeline } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { EXPERIENCE_CONSTANTS } from "@/shared/constants/Experience";
 import {
   Timeline,
   TimelineConnector,
