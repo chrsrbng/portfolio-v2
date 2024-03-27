@@ -1,4 +1,6 @@
-## [Live Demo](https://chrisrabang.netlify.app/)
+## Live Demo
+
+[Click Me](https://chrisrabang.netlify.app/) to view my portfolio live.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
