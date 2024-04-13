@@ -57,7 +57,7 @@ export default function Header({
                 after:tw-z-[1] tw-group/image after:tw-transition-all after:tw-duration-300 after:tw-ease-linear"
         >
           <div
-            className="tw-absolute tw-inset-[30px] tw-border-solid tw-border-[6px] tw-border-black/90 dark:tw-border-sky-400 tw-z-[3] tw-rounded-[50%] 
+            className="tw-absolute tw-inset-[30px] tw-border-solid tw-border-[6px] tw-border-sky-400 tw-z-[3] tw-rounded-[50%] 
                   tw-overflow-hidden tw-flex tw-justify-center tw-items-center"
           >
             <Image
