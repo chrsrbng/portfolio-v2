@@ -90,5 +90,9 @@ export const SKILLS = {
       iconPath: "/icons/skill-icons--vercel-dark.svg",
       label: "Vercel",
     },
+    {
+      iconPath: "/icons/skill-icons--cicd.svg",
+      label: "CI/CD",
+    }
   ],
 };

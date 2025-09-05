@@ -24,8 +24,9 @@ export const EXPERIENCE_CONSTANTS = [
       "React Query",
       "Redux",
       "Vite",
+      "CI/CD"
     ],
-    url: "https://app.deliveries.ph/",
+    url: "https://web.deliveries.ph/login",
   },
   {
     id: 1,
